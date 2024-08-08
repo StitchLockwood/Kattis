@@ -1,0 +1,67 @@
+import java.util.*;
+public class klockan2 {
+  public static void main(String args[]) {
+      Scanner scan = new Scanner(System.in);
+      //need to make code execute the math behind this based on every time and map the angle to the time
+      Map<Integer, Integer> map = new HashMap<>();
+    //   map.put(1,7);
+    //   System.out.println("Map elements: " + map);
+    //   System.out.println("Map of 1: " + map.get(1));
+    for(int h = 0; h < 12; h++){
+        for(int m = 0; m < 60; m++){
+            // System.out.println(h + "H " + m + "M");
+            // System.out.println("Unique Angle: " + calcAngle(h,m));
+            // System.out.println();
+            if(m<10 && h==0){
+                //System.out.println(calcAngle(h,m) + " = " + ("12" + "0" + String.valueOf(m)));
+                map.put(calcAngle(h,m),(Integer.parseInt("12" + "0" + String.valueOf(m))));
+                //System.out.println(map.values());
+            }
+            else if(h==0){
+                //System.out.println(calcAngle(h,m) + " = " + ("12" + String.valueOf(m)));
+                map.put(calcAngle(h,m),(Integer.parseInt("12" + String.valueOf(m))));
+                //System.out.println(map.values());
+            }
+            else if(m<10 && h>0 && h<10){
+                //System.out.println(calcAngle(h,m) + " = " + (Integer.parseInt(String.valueOf(h) + "0" + String.valueOf(m))));
+                map.put(calcAngle(h,m),(Integer.parseInt(String.valueOf(h) + "0" + String.valueOf(m))));
+                //System.out.println(map.values());
+            }else{
+                //System.out.println(calcAngle(h,m) + " = " + (Integer.parseInt(String.valueOf(h) + String.valueOf(m))));
+                map.put(calcAngle(h,m),(Integer.parseInt(String.valueOf(h) + String.valueOf(m))));
+                //System.out.println(map.values());
+            }
+        }
+    }
+    // System.out.println(map.entrySet());
+    // System.out.println((map.get(3140)/100) + ":" + (map.get(3140)%100));
+    String time = "";
+    int temp = 0;
+    temp = Integer.valueOf(scan.nextLine());
+    if(map.get(temp)/100<10){
+        time = "0" + map.get(temp)/100 + ":";
+    }else{
+        time = "" + map.get(temp)/100 + ":";
+    }
+    
+    if(map.get(temp)%100<10){
+        time = time + "0" + map.get(temp)%100;
+    }else{
+        time = time + "" + map.get(temp)%100;
+    }
+    System.out.println(time);
+    
+  }
+  //Calculates the angle given the time
+  static int calcAngle(int hHand, int mHand){
+      int mAngle = mHand * 6;
+      //System.out.println("Minute Abs Angle: " + mAngle);
+      double hAngle = (hHand * 30) + (0.5 * mHand);
+      //System.out.println("Hours Abs Angle: " + hAngle);
+      if(hAngle>mAngle){
+          return (int)((360-(hAngle-mAngle))*10);
+      }else{
+          return (int)((mAngle-hAngle)*10);
+      }
+  }
+}
