@@ -1,0 +1,29 @@
+import java.util.*;
+public class barcelona {
+  public static void main(String args[]) {
+      Scanner scan = new Scanner(System.in);
+      int totalBags = 0;
+      String bagID = "";
+      String line = scan.nextLine();
+      //System.out.println(line);
+      String[] arr = line.split(" ");
+      totalBags = Integer.parseInt(arr[0]);
+      bagID = arr[1];
+      line = scan.nextLine();
+      //System.out.println(line);
+      arr = line.split(" ");
+      //System.out.println(Arrays.toString(arr));
+      if(bagID.equals(arr[0])){
+          System.out.println("fyrst");
+      }else if(bagID.equals(arr[1])){
+          System.out.println("naestfyrst");
+      }else{
+          for(int i=2;i<totalBags;i++){
+              if(bagID.equals(arr[i])){
+                  System.out.println((i+1) + " fyrst");
+              }
+              //System.out.println("quit");
+          }
+      }
+  }
+}
