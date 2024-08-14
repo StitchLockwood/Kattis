@@ -1,0 +1,63 @@
+import java.util.*;
+public class bluetooth {
+  public static void main(String args[]) {
+    int UR = 8;
+    int UL = 8;
+    int LR = 8;
+    int LL = 8;
+    Scanner scan = new Scanner(System.in);
+    String line = scan.nextLine();
+    boolean left = true;
+    boolean right = true;
+    int inputs = Integer.parseInt(line);
+    for(int i=0;i<inputs;i++){
+        line = scan.nextLine();
+        if(line.substring(0,1).equals("-") && line.substring(3).equals("b")){
+            left = false;
+            LL--;
+            //System.out.print("LEFT BLUE ");
+            //System.out.println("Lower Left: " + LL);
+        }else if(line.substring(0,1).equals("-")){
+            LL--;
+            //System.out.println("Lower Left: " + LL);
+        }
+        if(line.substring(0,1).equals("+") && line.substring(3).equals("b")){
+            left = false;
+            UL--;
+            //System.out.print("LEFT BLUE ");
+            //System.out.println("Upper Left: " + UL);
+        }else if(line.substring(0,1).equals("+")){
+            UL--;
+            //System.out.println("Upper Left: " + UL);
+        }
+        if(line.substring(1,2).equals("-") && line.substring(3).equals("b")){
+            right = false;
+            LR--;
+            //System.out.print("RIGHT BLUE ");
+            //System.out.println("Lower Right: " + LR);
+        }else if(line.substring(1,2).equals("-")){
+            LR--;
+            //System.out.println("Lower Right: " + LR);
+        }
+        if(line.substring(1,2).equals("+") && line.substring(3).equals("b")){
+            right = false;
+            UR--;
+            //System.out.print("RIGHT BLUE ");
+            //System.out.println("Upper Right: " + UR);
+        }else if(line.substring(1,2).equals("+")){
+            UR--;
+            //System.out.println("Upper Right: " + UR);
+        }
+    }
+    //System.out.println("Left: " + left);
+    //System.out.println("Right: " + right);
+    //System.out.println("UL: " + UL +"\tLL: " + LL + "\tUR: " + UR + "\tLR: " + LR);
+    if(left && UL>0 && LL>0){
+        System.out.println("0");
+    }else if(right && UR>0 && LR>0){
+        System.out.println("1");
+    }else{
+        System.out.println("2");
+    }
+  }
+}
